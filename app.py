@@ -24,7 +24,8 @@ def scrape():
    mars.update({}, mars_data, upsert=True)
    return redirect('/', code=302)
 
-.update(query_parameter, data, options)
+#.update(query_parameter, data, options)
+#mars.update({}, mars_data, upsert=True)
 
 if __name__ == "__main__":
    app.run()
