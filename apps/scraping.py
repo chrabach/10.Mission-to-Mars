@@ -10,6 +10,7 @@ import pandas as pd
 import datetime as dt
 
 
+
 #10.5.3
 def scrape_all():
     # Initiate headless driver for deployment
@@ -25,6 +26,7 @@ def scrape_all():
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now()
+        #"hemisphere_images" : hemisphere_image_urls #adding for Deliverable 2
         }
      # Stop webdriver and return data
     
@@ -138,14 +140,9 @@ def mars_facts():
     except BaseException:
         return None
 
-
-
     df.columns=['description', 'Mars', 'Earth']
     df.set_index('description', inplace=True)
     #df
-
-
-
 
     #10.3.5
     #df.to_html()
@@ -153,6 +150,53 @@ def mars_facts():
 
 
 #browser.quit()
+
+
+
+#deliverable 2
+def scrape_hemispheres():
+    from bs4 import BeautifulSoup as bs
+    # 2. Create a list to hold the images and titles.
+    hemisphere_image_urls = []
+
+    # 3. Write code to retrieve the image urls and titles for each hemisphere.
+    #for x in range (1,4):
+
+    html = browser.html
+    soup = bs(html, 'html.parser')
+    #hemi_image_dict = {}
+    pictures = soup.find_all('div', class_='item')
+
+    hemispheres = {}
+
+    for picture in pictures:
+        hemi_image_dict = {}
+        a = picture.findNext('a')['href']
+        title = picture.findNext('h3').text
+        img_url = f'https://marshemispheres.com/{a}'
+        
+        browser.visit(img_url)
+        html = browser.html
+        soup = bs(html, 'html.parser')
+        
+        samples = soup.find_all('a', target ='_blank' )
+        for sample in samples:
+            if sample.text == "Sample":
+                a = sample['href']
+                img_url = f'https://marshemispheres.com/{a}'
+                hemispheres['img_url'] = img_url
+                
+        hemi_image_dict['img_url'] = img_url
+        hemi_image_dict['title'] = title
+        
+        #print(hemi_image_dict)
+        
+        
+        hemisphere_image_urls.append(hemi_image_dict)
+        #hemisphere_image_s.extend(hemi_image_dict)
+
+    return hemisphere_image_urls
+
 
 #10.5.3
 if __name__ == "__main__":

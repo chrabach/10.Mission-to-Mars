@@ -2,8 +2,15 @@
 #My exclusions
 01.Practice.ipynb
 scraping_OLD.py
-
-
+Challenge Notes.docx
+ch01_Mission_to_Mars_Challenge-BACKUPnothingdoneyet.ipynb
+ch01_testing.ipynb
+ch01_testing2.ipynb
+Mission_to_Mars_Challenge_starter_code.ipynb
+apps/ch02_Mission_to_Mars_Challenge.py
+apps/scraping_BACKUP.py
+apps/showdb.py
+ch01_Mission_to_Mars_Challenge.ipynb
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
