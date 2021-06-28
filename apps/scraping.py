@@ -8,7 +8,9 @@ from bs4 import BeautifulSoup as soup
 from webdriver_manager.chrome import ChromeDriverManager
 import pandas as pd
 import datetime as dt
-
+#Deliverable 2:
+import requests
+import pymongo
 
 
 #10.5.3
@@ -25,8 +27,8 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
-        "last_modified": dt.datetime.now()
-        #"hemisphere_images" : hemisphere_image_urls #adding for Deliverable 2
+        "last_modified": dt.datetime.now(),
+        "hemisphere_images": scrape_hemispheres() #adding for Deliverable 2 #[{'a':'a','b':'b'}]
         }
      # Stop webdriver and return data
     
@@ -153,9 +155,36 @@ def mars_facts():
 
 
 
-#deliverable 2
+#deliverable 2:
 def scrape_hemispheres():
     from bs4 import BeautifulSoup as bs
+    
+    #imports not covered
+    #10.3.3
+    #Import Splinter, BeautifulSoup
+    from splinter import Browser
+    from bs4 import BeautifulSoup as soup
+    from webdriver_manager.chrome import ChromeDriverManager
+    import pandas as pd
+    import datetime as dt
+    #Deliverable 2:
+    import requests
+    import pymongo
+
+
+
+
+
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    browser = Browser('chrome', **executable_path, headless=True)
+
+
+
+    
+    #for deliverable 2 from deliverable 1:
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+    
     # 2. Create a list to hold the images and titles.
     hemisphere_image_urls = []
 
@@ -195,7 +224,15 @@ def scrape_hemispheres():
         hemisphere_image_urls.append(hemi_image_dict)
         #hemisphere_image_s.extend(hemi_image_dict)
 
+    
+    
+    
+    
+
     return hemisphere_image_urls
+
+
+
 
 
 #10.5.3
