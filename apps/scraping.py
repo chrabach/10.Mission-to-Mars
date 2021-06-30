@@ -28,7 +28,8 @@ def scrape_all():
         "featured_image": featured_image(browser),
         "facts": mars_facts(),
         "last_modified": dt.datetime.now(),
-        "hemisphere_images": scrape_hemispheres() #adding for Deliverable 2 #[{'a':'a','b':'b'}]
+        "hemisphere_images": scrape_hemispheres(), #adding for Deliverable 2 #[{'a':'a','b':'b'}]
+        "thumbnails": scrape_thumbnails() #Deliverable 3
         }
      # Stop webdriver and return data
     
@@ -189,7 +190,7 @@ def scrape_hemispheres():
     hemisphere_image_urls = []
 
     # 3. Write code to retrieve the image urls and titles for each hemisphere.
-    #for x in range (1,4):
+    
 
     html = browser.html
     soup = bs(html, 'html.parser')
@@ -224,12 +225,65 @@ def scrape_hemispheres():
         hemisphere_image_urls.append(hemi_image_dict)
         #hemisphere_image_s.extend(hemi_image_dict)
 
-    
-    
-    
-    
+
 
     return hemisphere_image_urls
+
+
+
+def scrape_thumbnails():
+    from bs4 import BeautifulSoup as bs
+    
+    #imports not covered
+    #10.3.3
+    #Import Splinter, BeautifulSoup
+    from splinter import Browser
+    from bs4 import BeautifulSoup as soup
+    from webdriver_manager.chrome import ChromeDriverManager
+    import pandas as pd
+    import datetime as dt
+    #Deliverable 2:
+    import requests
+    import pymongo
+    
+   
+    executable_path = {'executable_path': ChromeDriverManager().install()}
+    browser = Browser('chrome', **executable_path, headless=True)
+
+
+
+    
+    #for deliverable 2 from deliverable 1:
+    url = 'https://marshemispheres.com/'
+    browser.visit(url)
+    
+    # 2. Create a list to hold the images and titles.
+    hemisphere_thumbnail_urls = [] 
+
+    # 3. Write code to retrieve the image urls and titles for each thumbnail.
+    
+
+    html = browser.html
+    soup = bs(html, 'html.parser')
+    #hemi_image_dict = {}
+    thumbnails = soup.find_all('div', class_='item')
+
+    #thumbs = {}
+    
+    for thumbnail in thumbnails:
+        thumb_image_dict = {}
+        a = thumbnail.findNext('img')['src']
+        title = thumbnail.findNext('h3').text
+        img_url = f'https://marshemispheres.com/{a}'
+        
+        
+        
+        thumb_image_dict['img_url'] = img_url
+        thumb_image_dict['title'] = title
+        
+        hemisphere_thumbnail_urls.append(thumb_image_dict)  
+        
+    return hemisphere_thumbnail_urls  
 
 
 

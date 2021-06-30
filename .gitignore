@@ -11,6 +11,8 @@ apps/ch02_Mission_to_Mars_Challenge.py
 apps/scraping_BACKUP.py
 apps/showdb.py
 ch01_Mission_to_Mars_Challenge.ipynb
+scraping_BACKUP.py
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
