@@ -12,7 +12,7 @@ An automated web browser to extract news and photos related to the Mission to Ma
 1. Use PythonData to check Mongo:
 	- type mongod and let that run
 	- mongo
-	- showdbs
+	- show dbs
 		- there should be one called mars_app.  if not:
 			- use mars_app
 
