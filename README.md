@@ -20,6 +20,9 @@ An automated web browser to extract news and photos related to the Mission to Ma
 	- navigate to the folder that contains app.py
 	- python app.py
 	- open browser at 127.0.0.1:5000
+
+A frozen sample can be viewed here:
+https://chrabach.github.io/zz_MissiontoMars/
 	
 ------------------------------------------------------------
 Contact:
