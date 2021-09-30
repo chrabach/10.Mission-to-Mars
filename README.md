@@ -23,5 +23,7 @@ An automated web browser to extract news and photos related to the Mission to Ma
 	
 ------------------------------------------------------------
 Contact:
+
 Email: chrabach@gmail.com
+
 Twitter: @chrabach
