@@ -21,3 +21,7 @@ An automated web browser to extract news and photos related to the Mission to Ma
 	- python app.py
 	- open browser at 127.0.0.1:5000
 	
+------------------------------------------------------------
+Contact:
+Email: chrabach@gmail.com
+Twitter: @chrabach
